@@ -66,12 +66,14 @@ public class MainActivity extends AppCompatActivity {
                     String posterPatch = response.body().getResults().get(i).getPosterPath();
                     String dropPatch = response.body().getResults().get(i).getBackdropPath();
                     int id = response.body().getResults().get(i).getId();
+                    double voteAverage = response.body().getResults().get(i).getVoteAverage();
                     arrayListMovie.add(new Result(
                             posterPatch,
                             title,
                             dropPatch,
                             overView,
-                            id
+                            id,
+                            voteAverage
                     ));
                 }
                 MovieAdapter adapter = new MovieAdapter(

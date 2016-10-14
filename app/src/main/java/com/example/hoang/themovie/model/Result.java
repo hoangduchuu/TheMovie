@@ -13,16 +13,17 @@ import javax.annotation.Generated;
 public class Result {
     ////----------CONTRUCTOOR----------//////////
 
-    public Result(String posterPath, String title, String backdropPath, String overview, int id) {
+    public Result(String posterPath, String title, String backdropPath, String overview, int id, double voteAverage) {
         this.posterPath = posterPath;
         this.title = title;
         this.backdropPath = backdropPath;
         this.overview = overview;
         this.id = id;
+        this.voteAverage = voteAverage;
+
     }
 
-
-    ////----------CONTRUCTOOR----------//////////
+////----------CONTRUCTOOR----------//////////
 
 
     @SerializedName("poster_path")
