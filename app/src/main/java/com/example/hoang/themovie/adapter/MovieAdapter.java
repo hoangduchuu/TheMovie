@@ -18,6 +18,12 @@ import com.example.hoang.themovie.model.Result;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
+import jp.wasabeef.picasso.transformations.BlurTransformation;
+import jp.wasabeef.picasso.transformations.CropSquareTransformation;
+import jp.wasabeef.picasso.transformations.CropTransformation;
+import jp.wasabeef.picasso.transformations.MaskTransformation;
+import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
 
 /**
  * Created by hoang on 10/11/16.
@@ -77,11 +83,13 @@ public class MovieAdapter extends ArrayAdapter<Result> {
         if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT){
             Picasso.with(getContext())
                     .load("https://image.tmdb.org/t/p/w342/" + movie.getPosterPath())
+                    .transform(new RoundedCornersTransformation(29,0))
                     .placeholder(R.drawable.preloading)
                     .into(viewHolder.ivCover);
         }else {
             Picasso.with(getContext())
                     .load("https://image.tmdb.org/t/p/w342/" + movie.getBackdropPath())
+                    .transform(new CropSquareTransformation())
                     .placeholder(R.drawable.preloading)
                     .into(viewHolder.ivCover);
 

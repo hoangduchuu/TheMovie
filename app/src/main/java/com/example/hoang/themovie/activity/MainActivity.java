@@ -66,9 +66,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 int id = arrayListMovie.get(i).getId();
-                Intent it = new Intent(getApplicationContext(), DetailActivity.class);
-                it.putExtra("idMovie", id);
-                startActivity(it);
+                Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+
+                intent.putExtra("idMovie", id);
+                intent.putExtra("name",arrayListMovie.get(i).getTitle());
+                intent.putExtra("overView",arrayListMovie.get(i).getOverview());
+                intent.putExtra("releaseDate", arrayListMovie.get(i).getReleaseDate());
+                startActivity(intent);
             }
         });
     }

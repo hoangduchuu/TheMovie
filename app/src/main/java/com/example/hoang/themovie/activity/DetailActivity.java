@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.hoang.themovie.R;
 import com.example.hoang.themovie.model.Trailer;
@@ -19,7 +20,7 @@ import retrofit2.Response;
 
 public class DetailActivity extends YouTubeBaseActivity {
     String AIP_YOUTUBE_KEY = "AIzaSyCdp4vTvzIzAL1nzID7mNFiUJ9dhgnCplw";
-    TextView tvTitle;
+    TextView tvName;
     String SHA = "5B:1A:37:88:0C:3F:F9:EE:8D:AE:4B:66:FF:C7:1C:85:27:77:94:0E";
 
     YouTubePlayerView mYouTubePlayerView;
@@ -30,16 +31,17 @@ public class DetailActivity extends YouTubeBaseActivity {
         setContentView(R.layout.activity_detail);
         Intent it = getIntent();
         final int id = it.getIntExtra("idMovie", -11);
-        mYouTubePlayerView = (YouTubePlayerView) findViewById(R.id.player);
-        tvTitle = (TextView)findViewById(R.id.tvTitle) ;
 
+        mYouTubePlayerView = (YouTubePlayerView) findViewById(R.id.player);
+        tvName = (TextView)findViewById(R.id.tvName) ;
+
+        tvName.setText(it.getStringExtra("name"));
 
         TrailerApi.Factory.getTrailler().getVideos(id).enqueue(new Callback<Trailer>() {
             @Override
             public void onResponse(Call<Trailer> call, Response<Trailer> response) {
                 Log.d("OK" , String.valueOf(response.isSuccessful()));
                 final String videLink = response.body().getResults().get(0).getKey();
-                tvTitle.setText(response.body().getResults().get(0).getName()   );
                         mYouTubePlayerView.initialize(AIP_YOUTUBE_KEY,
                         new YouTubePlayer.OnInitializedListener() {
 

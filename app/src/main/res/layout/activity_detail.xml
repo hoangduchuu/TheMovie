@@ -16,7 +16,7 @@
         android:layout_height="260sp">
     </com.google.android.youtube.player.YouTubePlayerView>
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvName"
         android:padding="@dimen/normal_space"
         android:text="TITLE ..."
         android:textColor="@color/colorAccent"
