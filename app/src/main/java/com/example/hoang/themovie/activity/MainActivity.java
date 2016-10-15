@@ -1,10 +1,12 @@
 package com.example.hoang.themovie.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -24,21 +26,32 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private SwipeRefreshLayout swipeContainer;
     private ListView lvMovie;
-    private ArrayList<Result> arrayListMovie;
     private ProgressBar pgLoading;
+    private ArrayList<Result> arrayListMovie;
+
+//    @Bind(R.id.swipeContainer)
+//    SwipeRefreshLayout swipeContainer;
+//    @BindView(R.id.lvMovie)
+//    ListView lvMovie;
+//    @BindView(R.id.pgLoading)
+//    ProgressBar pgLoading;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+//        ButterKnife.bind(this);
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
-        arrayListMovie = new ArrayList<Result>();
         pgLoading = (ProgressBar) findViewById(R.id.pgLoading);
+        lvMovie = (ListView) findViewById(R.id.lvMovie);
+        arrayListMovie = new ArrayList<Result>();
 
         fetchMovie();
         swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                lvMovie.setAdapter(null);
                 fetchMovie();
                 Toast.makeText(MainActivity.this, "Date updated or not??", Toast.LENGTH_SHORT).show();
             }
@@ -48,19 +61,26 @@ public class MainActivity extends AppCompatActivity {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+        lvMovie.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                int id = arrayListMovie.get(i).getId();
+                Intent it = new Intent(getApplicationContext(), DetailActivity.class);
+                it.putExtra("idMovie", id);
+                startActivity(it);
+            }
+        });
     }
 
-    public void fetchMovie(){
-
-        lvMovie = (ListView) findViewById(R.id.lvMovie);
-
-        MoveApi.Factory.getInstance().getMovies().enqueue(new Callback<Movie>() {
+    public void fetchMovie() {
+        MoveApi.Factory.getInstance().getMovies(MoveApi.API_KEY).enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
-                Log.d("Success" , String.valueOf(response.isSuccessful()));
+                Log.d("Success", String.valueOf(response.isSuccessful()));
 
                 int totaValue = response.body().getResults().size();
-                for (int i = 0; i < totaValue; i++){
+                for (int i = 0; i < totaValue; i++) {
                     String title = response.body().getResults().get(i).getTitle();
                     String overView = response.body().getResults().get(i).getOverview();
                     String posterPatch = response.body().getResults().get(i).getPosterPath();
@@ -88,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
-                Log.e("FailedCmnr", t.getMessage() );
+                Log.e("FailedCmnr", t.getMessage());
             }
         });
     }

@@ -11,15 +11,6 @@ import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Movie {
-
-    /////////////////////////////
-
-
-
-
-    /////////////////////////////
-
-
     @SerializedName("page")
     @Expose
     private int page;

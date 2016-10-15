@@ -11,8 +11,6 @@ import javax.annotation.Generated;
 
 @Generated("org.jsonschema2pojo")
 public class Result {
-    ////----------CONTRUCTOOR----------//////////
-
     public Result(String posterPath, String title, String backdropPath, String overview, int id, double voteAverage) {
         this.posterPath = posterPath;
         this.title = title;
@@ -20,12 +18,7 @@ public class Result {
         this.overview = overview;
         this.id = id;
         this.voteAverage = voteAverage;
-
     }
-
-////----------CONTRUCTOOR----------//////////
-
-
     @SerializedName("poster_path")
     @Expose
     private String posterPath;
@@ -70,7 +63,7 @@ public class Result {
     private double voteAverage;
 
     /**
-     * 
+     *
      * @return
      *     The posterPath
      */
@@ -79,7 +72,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param posterPath
      *     The poster_path
      */
@@ -88,7 +81,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The adult
      */
@@ -97,7 +90,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param adult
      *     The adult
      */
@@ -106,7 +99,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The overview
      */
@@ -115,7 +108,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param overview
      *     The overview
      */
@@ -124,7 +117,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The releaseDate
      */
@@ -133,7 +126,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param releaseDate
      *     The release_date
      */
@@ -142,7 +135,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The genreIds
      */
@@ -151,7 +144,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param genreIds
      *     The genre_ids
      */
@@ -160,7 +153,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The id
      */
@@ -169,7 +162,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param id
      *     The id
      */
@@ -178,7 +171,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The originalTitle
      */
@@ -187,7 +180,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param originalTitle
      *     The original_title
      */
@@ -196,7 +189,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The originalLanguage
      */
@@ -205,7 +198,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param originalLanguage
      *     The original_language
      */
@@ -214,7 +207,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The title
      */
@@ -223,7 +216,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param title
      *     The title
      */
@@ -232,7 +225,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The backdropPath
      */
@@ -241,7 +234,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param backdropPath
      *     The backdrop_path
      */
@@ -250,7 +243,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The popularity
      */
@@ -259,7 +252,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param popularity
      *     The popularity
      */
@@ -268,7 +261,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The voteCount
      */
@@ -277,7 +270,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param voteCount
      *     The vote_count
      */
@@ -286,7 +279,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The video
      */
@@ -295,7 +288,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param video
      *     The video
      */
@@ -304,7 +297,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @return
      *     The voteAverage
      */
@@ -313,7 +306,7 @@ public class Result {
     }
 
     /**
-     * 
+     *
      * @param voteAverage
      *     The vote_average
      */
