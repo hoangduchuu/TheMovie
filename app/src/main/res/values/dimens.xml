@@ -6,4 +6,7 @@
     <dimen name="large_size">20sp</dimen>
     <dimen name="size_normal">16sp</dimen>
     <dimen name="normal_space">16dp</dimen>
+    <dimen name="size_star">20sp</dimen>
+    <dimen name="big_size">40sp</dimen>
+    <dimen name="vcl_size">100dp</dimen>
 </resources>

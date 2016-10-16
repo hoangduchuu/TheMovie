@@ -17,36 +17,28 @@ public class Dates {
     private String minimum;
 
     /**
-     * 
-     * @return
-     *     The maximum
+     * @return The maximum
      */
     public String getMaximum() {
         return maximum;
     }
 
     /**
-     * 
-     * @param maximum
-     *     The maximum
+     * @param maximum The maximum
      */
     public void setMaximum(String maximum) {
         this.maximum = maximum;
     }
 
     /**
-     * 
-     * @return
-     *     The minimum
+     * @return The minimum
      */
     public String getMinimum() {
         return minimum;
     }
 
     /**
-     * 
-     * @param minimum
-     *     The minimum
+     * @param minimum The minimum
      */
     public void setMinimum(String minimum) {
         this.minimum = minimum;

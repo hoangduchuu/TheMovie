@@ -22,6 +22,7 @@ public interface MoveApi {
 
     class Factory {
         private static MoveApi service;
+
         public static MoveApi getInstance() {
             if (service == null) {
                 Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
@@ -33,27 +34,7 @@ public interface MoveApi {
                 return service;
             }
         }
-
-//        private static OkHttpClient client(){
-//            return  new OkHttpClient.Builder()
-//                    .addInterceptor()
-//                    .build();
-//        }
-//
-//        private static Interceptor apikeyInterceptor(){
-//            return  new Interceptor() {
-//                @Override
-//                public Response intercept(Chain chain) throws IOException {
-//                    Request request = chain.request();
-//                    HttpUrl
-//                    return null;
-//                }
-//            };
-//        }
     }
-
-
-
 
 
 }

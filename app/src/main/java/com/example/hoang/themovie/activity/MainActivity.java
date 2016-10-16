@@ -29,19 +29,10 @@ public class MainActivity extends AppCompatActivity {
     private ProgressBar pgLoading;
     private ArrayList<Result> arrayListMovie;
 
-//    @Bind(R.id.swipeContainer)
-//    SwipeRefreshLayout swipeContainer;
-//    @BindView(R.id.lvMovie)
-//    ListView lvMovie;
-//    @BindView(R.id.pgLoading)
-//    ProgressBar pgLoading;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        ButterKnife.bind(this);
         swipeContainer = (SwipeRefreshLayout) findViewById(R.id.swipeContainer);
         pgLoading = (ProgressBar) findViewById(R.id.pgLoading);
         lvMovie = (ListView) findViewById(R.id.lvMovie);
@@ -53,10 +44,9 @@ public class MainActivity extends AppCompatActivity {
             public void onRefresh() {
                 lvMovie.setAdapter(null);
                 fetchMovie();
-                Toast.makeText(MainActivity.this, "Date updated or not??", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this, " updated??", Toast.LENGTH_SHORT).show();
             }
         });
-        // color of swipeContainer
         swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
@@ -67,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 int id = arrayListMovie.get(i).getId();
                 Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-
                 intent.putExtra("idMovie", id);
-                intent.putExtra("name",arrayListMovie.get(i).getTitle());
-                intent.putExtra("overView",arrayListMovie.get(i).getOverview());
+                intent.putExtra("star", String.valueOf(arrayListMovie.get(i).getVoteAverage()));
+                intent.putExtra("name", arrayListMovie.get(i).getTitle());
+                intent.putExtra("overView", arrayListMovie.get(i).getOverview());
                 intent.putExtra("releaseDate", arrayListMovie.get(i).getReleaseDate());
                 startActivity(intent);
             }
@@ -81,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         MoveApi.Factory.getInstance().getMovies(MoveApi.API_KEY).enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
-                Log.d("Success", String.valueOf(response.isSuccessful()));
+                Log.d("Successful", String.valueOf(response.isSuccessful()));
 
                 int totaValue = response.body().getResults().size();
                 for (int i = 0; i < totaValue; i++) {
@@ -91,13 +81,16 @@ public class MainActivity extends AppCompatActivity {
                     String dropPatch = response.body().getResults().get(i).getBackdropPath();
                     int id = response.body().getResults().get(i).getId();
                     double voteAverage = response.body().getResults().get(i).getVoteAverage();
+                    String releaseDate = response.body().getResults().get(i).getReleaseDate();
                     arrayListMovie.add(new Result(
                             posterPatch,
                             title,
                             dropPatch,
                             overView,
                             id,
-                            voteAverage
+                            voteAverage,
+                            releaseDate
+
                     ));
                 }
                 MovieAdapter adapter = new MovieAdapter(
@@ -112,8 +105,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Movie> call, Throwable t) {
-                Log.e("FailedCmnr", t.getMessage());
+                Log.e("FailCMNR", t.getMessage());
             }
         });
     }
+
 }
